@@ -16,7 +16,7 @@ public class ActorTest {
     }
 
     @Test
-    public void actorCanMoveSafely() {
+    public void actorPeekTest() {
         final PlayField playField = getPlayNewField();
         final Actor actor = playField.getPacMan();
         final String onFail = "Could not move when it should've worked";
@@ -37,7 +37,7 @@ public class ActorTest {
     }
 
     @Test
-    public void actorCannotMoveSafely() {
+    public void actorCannotPeekTest() {
         final PlayField playField = getPlayNewField();
         final String onFail = "Could move when it shouldn't have worked";
         final Actor actor = playField.getPacMan();
