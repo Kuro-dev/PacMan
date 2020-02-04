@@ -19,12 +19,19 @@ public class ActorTest {
     public void actorCanMoveSafely() {
         final PlayField playField = getPlayNewField();
         final Actor actor = playField.getPacMan();
-        String onFail = "Could not move when it should've worked";
+        final String onFail = "Could not move when it should've worked";
         assertTrue(actor.peek(-1, 0), onFail);
         assertTrue(actor.peek(0, -1), onFail);
         assertTrue(actor.peek(-1, -1));
-        //Moving the character by one position to the left to see
-        // if peaking right will show the now empty spot
+
+    }
+
+    @Test
+    public void testIfPeekWillChangeResultDependingOnPosition() {
+        final PlayField playField = getPlayNewField();
+        final Actor actor = playField.getPacMan();
+        final String onFail = "Could not move when it should've worked";
+        assertFalse(actor.peek(1, 0), "Peek returned true when it was directed at a wall");
         actor.moveSafely(Direction.EAST);
         assertTrue(actor.peek(1, 0), onFail);
     }
