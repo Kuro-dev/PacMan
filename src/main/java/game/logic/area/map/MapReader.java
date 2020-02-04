@@ -35,11 +35,11 @@ public class MapReader {
                 final Coordinate location = new Coordinate(x, y);
                 switch (FieldIdentifier.valueOf(line[x])) {
                     case PAC:
-                        pacMan = new Pac(location);
+                        pacMan = new Pac(location, tiles);
                         tiles.add(new Tile(location.clone(), false));
                         break;
                     case GHOST:
-                        ghosts.add(new Ghost(location));
+                        ghosts.add(new Ghost(location, tiles));
                         tiles.add(new Tile(location.clone(), false));
                         break;
                     case WALL:

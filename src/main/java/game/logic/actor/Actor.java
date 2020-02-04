@@ -8,9 +8,11 @@ import java.util.List;
 
 public abstract class Actor {
     protected final Coordinate coordinate;
+    private final List<Tile> fieldTiles;
 
-    public Actor(Coordinate coordinate) {
+    public Actor(Coordinate coordinate, List<Tile> fieldTiles) {
         this.coordinate = coordinate;
+        this.fieldTiles = fieldTiles;
     }
 
     public Coordinate getCoordinate() {
@@ -22,37 +24,39 @@ public abstract class Actor {
      *
      * @param xOffset    The x offset of which the actor is to be moved
      * @param yOffset    The y offset of which the actor is to be moved
-     * @param fieldTiles The tiles of the playField
-     * @return true if the character has been successfully moved
      */
-    public boolean moveSafely(int xOffset, int yOffset, List<Tile> fieldTiles) {
+    public void moveSafely(int xOffset, int yOffset) {
         final Coordinate dest = this.coordinate.clone();
         dest.move(xOffset, yOffset);
-        boolean peek = peek(dest, fieldTiles);
+        boolean peek = peek(dest);
         if (peek) {
             this.coordinate.move(xOffset, yOffset);
         }
-        return peek;
     }
 
-    public boolean moveSafely(Direction direction, List<Tile> fieldTiles) {
-        return moveSafely(direction.getX(), direction.getY(), fieldTiles);
+    public void moveSafely(Direction direction) {
+        moveSafely(direction.getX(), direction.getY());
     }
 
     /**
      * Peaks at the given coordinates to find out what is there.
      *
-     * @param coordinate The coordinate to peek at.
-     * @param tiles      The list of tiles in the playfield
+     * @param dest The coordinate to peek at.
      * @return true if the given coordinate is a free space to walk on.
      */
-    public boolean peek(Coordinate dest, List<Tile> tiles) {
-        for (Tile tile : tiles) {
+    public boolean peek(Coordinate dest) {
+        for (Tile tile : fieldTiles) {
             final boolean equal = tile.getCoordinate().equals(dest);
             if (equal) {
                 return !tile.isWall();
             }
         }
         return false;
+    }
+
+    public boolean peek(int xOffset, int yOffset) {
+        final Coordinate dest = this.coordinate.clone();
+        dest.move(xOffset, yOffset);
+        return peek(dest);
     }
 }

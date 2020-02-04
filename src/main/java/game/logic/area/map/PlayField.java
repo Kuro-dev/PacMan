@@ -11,7 +11,7 @@ public class PlayField {
     private final Pac pacMan;
     private final List<Ghost> ghosts;
 
-    public PlayField(List<Tile> tiles, Pac pacMan, List<Ghost> ghosts) {
+    protected PlayField(List<Tile> tiles, Pac pacMan, List<Ghost> ghosts) {
 
         this.tiles = tiles;
         this.pacMan = pacMan;
