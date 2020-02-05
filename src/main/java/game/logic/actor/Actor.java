@@ -10,6 +10,14 @@ public abstract class Actor {
     protected final Coordinate coordinate;
     private final List<Tile> fieldTiles;
 
+    /**
+     * Care should be taken with the {@link Coordinate} instance given in the constructor.
+     * <p>It should not be passed to multiple instances without care. This could lead to some unforeseen bugs.</p>
+     * <p>Make sure you know what you are doing.</p>
+     *
+     * @param coordinate The coordinate of this actor.
+     * @param fieldTiles The tiles of the play field.
+     */
     public Actor(Coordinate coordinate, List<Tile> fieldTiles) {
         this.coordinate = coordinate;
         this.fieldTiles = fieldTiles;
