@@ -1,13 +1,14 @@
 package logic;
 
 import game.logic.actor.Actor;
+import game.logic.actor.Pac;
 import game.logic.area.map.MapReader;
 import game.logic.area.map.PlayField;
+import game.logic.area.position.Coordinate;
 import game.logic.area.position.Direction;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ActorTest {
     private static PlayField getPlayNewField() {
@@ -42,5 +43,20 @@ public class ActorTest {
         assertFalse(actor.peek(1, 0), onFail);
         assertFalse(actor.peek(0, 1), onFail);
         assertFalse(actor.peek(2, 1), onFail);
+    }
+
+    @Test
+    public void pacResetToInitialPositionTest() {
+        final PlayField playField = getPlayNewField();
+        final String onFail = "Could not reset pacMan";
+        final Coordinate initial = playField.getPacMan().getCoordinate().copy();
+        final Pac actor = playField.getPacMan();
+        //See if it works multiple times in a row
+        for (int i = 0; i < 10; i++) {
+            actor.moveSafely(-2, -1);
+            assertNotEquals(initial, actor.getCoordinate());
+            actor.reset();
+            assertEquals(initial, actor.getCoordinate());
+        }
     }
 }
