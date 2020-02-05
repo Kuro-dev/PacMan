@@ -20,6 +20,10 @@ public class Coordinate {
         this.y = y;
     }
 
+    public void set(Coordinate newCoordinate) {
+        this.set(newCoordinate.x, newCoordinate.y);
+    }
+
     public void move(int xOffset, int yOffset) {
         set(x + xOffset, y + yOffset);
     }
@@ -55,14 +59,13 @@ public class Coordinate {
     }
 
     /**
-     * Creates a clones instance of the given object. They will be equal in Hashcode and the {@link #equals(Object)}
+     * Creates a copied instance of the given object. They will be equal in Hashcode and the {@link #equals(Object)}
      * method will return true. However they will not be the same coordinate,
-     * therefore if one gets its values changed the other remains untouched
+     * therefore if one has its values changed the other remains untouched.
      *
      * @return A new coordinate instance containing the same values as the cloned one.
      */
-    @Override
-    public Coordinate clone() {
+    public Coordinate copy() {
         return new Coordinate(this);
     }
 }
