@@ -5,7 +5,7 @@ import game.logic.actor.Pac;
 import game.logic.area.position.Direction;
 
 public class StandardAI implements GhostAI {
-    public static final StandardAI STANDARD_AI = new StandardAI();
+    public static final StandardAI INSTANCE = new StandardAI();
 
     @Override
     public Direction getTargetDirection(Ghost ghost, Pac pac) {
