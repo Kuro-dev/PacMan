@@ -1,17 +1,16 @@
 package logic;
 
 import game.logic.area.field.Tile;
-import game.logic.exception.InvalidMapException;
 import game.logic.area.map.MapReader;
 import game.logic.area.map.PlayField;
 import game.logic.area.position.Coordinate;
+import game.logic.exception.InvalidMapException;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MapCreation {
     @Test
@@ -27,6 +26,7 @@ public class MapCreation {
         final MapReader map = new MapReader(stream);
         Assertions.assertThrows(InvalidMapException.class, map::read);
     }
+
     @Test
     public void coordinatesEqualTest() {
         assertEquals(new Coordinate(5, 7), new Coordinate(5, 7));

@@ -4,13 +4,12 @@ import game.logic.actor.Actor;
 import game.logic.area.map.MapReader;
 import game.logic.area.map.PlayField;
 import game.logic.area.position.Direction;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ActorTest {
-
     private static PlayField getPlayNewField() {
         return new MapReader(ActorTest.class.getResourceAsStream("/map/actorTestMap.field")).read();
     }
@@ -23,7 +22,6 @@ public class ActorTest {
         assertTrue(actor.peek(-1, 0), onFail);
         assertTrue(actor.peek(0, -1), onFail);
         assertTrue(actor.peek(-1, -1));
-
     }
 
     @Test
