@@ -36,11 +36,11 @@ public class MapReader {
                 switch (FieldIdentifier.valueOf(line[x])) {
                     case PAC:
                         pacMan = new Pac(location, tiles);
-                        tiles.add(new Tile(location.clone(), false));
+                        tiles.add(new Tile(location.copy(), false));
                         break;
                     case GHOST:
                         ghosts.add(new Ghost(location, tiles));
-                        tiles.add(new Tile(location.clone(), false));
+                        tiles.add(new Tile(location.copy(), false));
                         break;
                     case WALL:
                         tiles.add(new Tile(location, true));
@@ -53,6 +53,9 @@ public class MapReader {
         }
         if (pacMan == null) {
             throw new InvalidMapException("pacMan not found in map File");
+        }
+        for (Ghost ghost : ghosts) {
+            ghost.setPac(pacMan);
         }
         return new PlayField(tiles, pacMan, ghosts);
     }

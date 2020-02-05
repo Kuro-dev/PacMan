@@ -7,18 +7,18 @@ import game.logic.area.field.Tile;
 import java.util.List;
 
 public class PlayField {
-    private final List<Tile> tiles;
+    private final Tile[] tiles;
     private final Pac pacMan;
-    private final List<Ghost> ghosts;
+    private Ghost[] ghosts;
 
     protected PlayField(List<Tile> tiles, Pac pacMan, List<Ghost> ghosts) {
 
-        this.tiles = tiles;
+        this.tiles = tiles.toArray(new Tile[0]);
         this.pacMan = pacMan;
-        this.ghosts = ghosts;
+        this.ghosts = ghosts.toArray(new Ghost[0]);
     }
 
-    public List<Tile> getTiles() {
+    public Tile[] getTiles() {
         return tiles;
     }
 
@@ -26,7 +26,7 @@ public class PlayField {
         return pacMan;
     }
 
-    public List<Ghost> getGhosts() {
+    public Ghost[] getGhosts() {
         return ghosts;
     }
 }
