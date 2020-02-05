@@ -11,7 +11,7 @@ public abstract class Actor {
     private final List<Tile> fieldTiles;
 
     public Actor(Coordinate coordinate, List<Tile> fieldTiles) {
-        this.coordinate = coordinate;
+        this.coordinate = coordinate.copy();
         this.fieldTiles = fieldTiles;
     }
 
